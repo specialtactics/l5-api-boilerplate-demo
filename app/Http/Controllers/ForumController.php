@@ -38,6 +38,10 @@ class ForumController extends Controller
         $posts = $this->api->get('/posts');
         dump($posts);
 
+        $newPost = $this->api->post('/posts', ['topic' => 'Sample topic', 'content' => 'lorum ipsum', 'forum_id' => $resources->first()->getKey()]);
+
+        dd($newPost);
+
         return $this->response->collection($resources, $this->getTransformer());
     }
 }

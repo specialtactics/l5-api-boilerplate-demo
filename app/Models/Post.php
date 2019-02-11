@@ -24,7 +24,7 @@ class Post extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['topic', 'content', 'forum_id'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
