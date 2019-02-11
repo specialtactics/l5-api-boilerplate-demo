@@ -1,0 +1,104 @@
+version: '2'
+
+services:
+
+### Applications Code Container #############################
+    application:
+      container_name: bpdemo_app
+      image: tianon/true
+      volumes:
+        - ./:/var/www:cached
+        - ~/.ssh:/home/laradock/.ssh
+        - ~/.gitconfig:/home/laradock/.gitconfig
+        - ~/.config/composer:/home/laradock/.config/composer
+        - ~/.aws:/home/laradock/.aws
+
+### Workspace Utilities ##################################
+    workspace:
+      container_name: bpdemo_workspace
+      network_mode: "bridge"
+      build:
+        context: ./env/docker/workspace
+        args:
+          - PHP_VERSION=${PHP_VERSION}
+          - PHP_XDEBUG_ENABLE=${PHP_XDEBUG_ENABLE}
+          - PHP_XDEBUG_REMOTE_CONNECT_BACK=${PHP_XDEBUG_REMOTE_CONNECT_BACK}
+          - APIARY_API_NAME=${APIARY_API_NAME}
+          - APIARY_API_KEY=${APIARY_API_KEY}
+          - APIARY_API_OUTPUT=${APIARY_API_OUTPUT}
+          - APIARY_DOC_OUTPUT=${APIARY_DOC_OUTPUT}
+          - COMPOSER_PROCESS_TIMEOUT=${COMPOSER_PROCESS_TIMEOUT}
+      volumes_from:
+        - application
+      links:
+        - postgres
+        - redis
+      tty: true
+
+### PHP-FPM ##############################################
+    php-fpm:
+      container_name: bpdemo_php_fpm
+      network_mode: "bridge"
+      build:
+        context: ./env/docker/php-fpm
+        args:
+          - PHP_VERSION=${PHP_VERSION}
+          - PHP_XDEBUG_ENABLE=${PHP_XDEBUG_ENABLE}
+          - PHP_XDEBUG_REMOTE_CONNECT_BACK=${PHP_XDEBUG_REMOTE_CONNECT_BACK}
+      volumes_from:
+        - application
+      links:
+        - postgres
+        - redis
+      expose:
+        - 9000
+      depends_on:
+        - workspace
+
+### NGINX Server #########################################
+    nginx:
+      container_name: bpdemo_nginx
+      network_mode: "bridge"
+      build:
+        context: ./env/docker/nginx
+      volumes_from:
+        - application
+      links:
+        - php-fpm
+      volumes:
+        - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      external_links:
+        - proxy
+      depends_on:
+        - php-fpm
+        - postgres
+      environment:
+        - VIRTUAL_HOST=${NGINX_VIRTUAL_HOST}
+        - HTTPS_METHOD=${HTTPS_METHOD}
+
+### PostgreSQL ###########################################
+    postgres:
+      container_name: bpdemo_postgres
+      network_mode: "bridge"
+      build:
+        context: ./env/docker/postgres
+      volumes:
+        - ${DATA_PATH_HOST}postgres:/var/lib/postgresql/data
+      ports:
+        - ${POSTGRES_PORT}:5432
+      environment:
+        - POSTGRES_DB=${POSTGRES_DB}
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+### Redis ################################################
+    redis:
+      container_name: bpdemo_redis
+      image: "redis"
+      network_mode: "bridge"
+      hostname: bpdemo_redis
+
+### Volumes Setup ###########################################
+volumes:
+  postgres:
+    driver: "local"
