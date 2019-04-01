@@ -1,0 +1,657 @@
+{
+	"info": {
+		"_postman_id": "be69a19e-8ecb-4a89-a8cc-073300881cfd",
+		"name": "L5 API Boilerplate Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login as Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d953560-1388-416e-8a7b-6445e9e8b1a8",
+								"exec": [
+									"const res = pm.response.json();",
+									"",
+									"pm.environment.set(\"adminJWT\", res.data.jwt);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3c6a750a-4962-4e75-a1e7-479d7e44e102",
+								"exec": [
+									"pm.variables.set('authHeader', btoa(pm.environment.get('adminEmail') + ':' + pm.environment.get('adminPassword')));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{authHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/auth/jwt/token",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"auth",
+								"jwt",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d953560-1388-416e-8a7b-6445e9e8b1a8",
+								"exec": [
+									"const res = pm.response.json();",
+									"",
+									"pm.globals.set(\"adminJWT\", res.data.jwt);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/auth/me",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36d37aa3-b575-48c3-9e32-f762600cdbba",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.environment.set(\"userUuid\", response.data[0].userUuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/users",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eec5df1-fd09-4424-b691-3971490462d5",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.environment.set(\"userUuid\", response.data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "222749dc-e2b6-4b62-bea8-281d12ad5960",
+								"exec": [
+									"var ranstr = (len) => {",
+									"  const chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"; let str = '';",
+									"  for (let i = 0; i < len; ++i) { str += chars.charAt(Math.floor(Math.random() * chars.length)); }",
+									"  return str;",
+									"}",
+									"",
+									"pm.globals.set(\"randomString\", ranstr(10));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"{{randomString}}@test.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/users/{{userUuid}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"{{userUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update A User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated user name\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/{{userUuid}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"{{userUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/users/{{userUuid}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"{{userUuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Forums",
+			"item": [
+				{
+					"name": "Get Forums",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36d37aa3-b575-48c3-9e32-f762600cdbba",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.environment.set(\"forumUuid\", response.data[0].userUuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/forums",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"forums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Forum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eec5df1-fd09-4424-b691-3971490462d5",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"if (pm.response.code == 201) {",
+									"    pm.environment.set(\"forumUuid\", response.data.id);    ",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "222749dc-e2b6-4b62-bea8-281d12ad5960",
+								"exec": [
+									"var ranstr = (len) => {",
+									"  const chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"; let str = '';",
+									"  for (let i = 0; i < len; ++i) { str += chars.charAt(Math.floor(Math.random() * chars.length)); }",
+									"  return str;",
+									"}",
+									"",
+									"pm.globals.set(\"randomString\", ranstr(10));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Gadgets\",\n    \"description\": \"Discuss all manner of electronics here\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/forums",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"forums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Forum",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/forums/{{forumUuid}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"forums",
+								"{{forumUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update A Forum",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Different forum name\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/forums/{{forumUuid}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"forums",
+								"{{forumUuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/forums/{{forumUuid}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"forums",
+								"{{forumUuid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aaf78bc1-8e1e-4ae5-87e8-9b8b654c34c3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ef89622-4d1f-4f1e-8230-63d52f8fcf88",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Topics",
+			"item": [
+				{
+					"name": "Create a topic in current forum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eec5df1-fd09-4424-b691-3971490462d5",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"if (pm.response.code == 201) {",
+									"    pm.environment.set(\"topicUuid\", response.data.id);    ",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "222749dc-e2b6-4b62-bea8-281d12ad5960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Gadgets\",\n    \"description\": \"Discuss all manner of electronics here\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/forums",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"forums"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Get Posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36d37aa3-b575-48c3-9e32-f762600cdbba",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.globals.set(\"userUuid\", response.data[0].userUuid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminJWT}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/posts",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "043759be-c906-499d-a292-6a20d8f41f15",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1360dc7c-b44f-4bd5-ba7b-f4904eb5d2d0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

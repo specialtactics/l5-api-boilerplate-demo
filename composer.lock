@@ -2047,12 +2047,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/specialtactics/l5-api.git",
-                "reference": "55d6fc20218286225e2e31fdde0ce825b606933a"
+                "reference": "34ec1b86c8c86dd2aa5420481ed619daa0732acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/55d6fc20218286225e2e31fdde0ce825b606933a",
-                "reference": "55d6fc20218286225e2e31fdde0ce825b606933a",
+                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/34ec1b86c8c86dd2aa5420481ed619daa0732acd",
+                "reference": "34ec1b86c8c86dd2aa5420481ed619daa0732acd",
                 "shasum": ""
             },
             "require": {
@@ -2103,7 +2103,7 @@
                 "boilerplate",
                 "laravel"
             ],
-            "time": "2019-03-30T13:04:21+00:00"
+            "time": "2019-04-01T14:17:48+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
