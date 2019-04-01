@@ -13,35 +13,7 @@ class ForumController extends Controller
     public static $model = Forum::class;
 
     /**
-     * @var BaseModel The parent model of the model, in the case of a child rest controller
-     */
-    public static $parentModel = null;
-
-    /**
      * @var null|BaseTransformer The transformer this controller should use, if overriding the model & default
      */
     public static $transformer = null;
-
-    /**
-     * @return \Dingo\Api\Http\Response
-     */
-    public function getAll()
-    {
-        $model = new static::$model;
-
-        $query = $model::with($model::$localWith);
-        $this->qualifyCollectionQuery($query);
-
-        $resources = $query->get();
-
-        // Internal Request
-        $posts = $this->api->get('/posts');
-        dump($posts);
-
-        $newPost = $this->api->post('/posts', ['topic' => 'Sample topic', 'content' => 'lorum ipsum', 'forum_id' => $resources->first()->getKey()]);
-
-        dd($newPost);
-
-        return $this->response->collection($resources, $this->getTransformer());
-    }
 }

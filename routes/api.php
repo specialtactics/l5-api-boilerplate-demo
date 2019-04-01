@@ -86,5 +86,16 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
         $api->group(['prefix' => 'roles'], function ($api) {
             $api->get('/', 'App\Http\Controllers\RoleController@getAll');
         });
+
+        /*
+         * Forums
+         */
+        $api->group(['prefix' => 'forums'], function ($api) {
+            $api->get('/', 'App\Http\Controllers\ForumController@getAll');
+            $api->get('/{uuid}', 'App\Http\Controllers\ForumController@get');
+            $api->post('/', 'App\Http\Controllers\ForumController@post');
+            $api->patch('/{uuid}', 'App\Http\Controllers\ForumController@patch');
+            $api->delete('/{uuid}', 'App\Http\Controllers\ForumController@delete');
+        });
     });
 });

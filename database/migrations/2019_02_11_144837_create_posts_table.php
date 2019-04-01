@@ -27,7 +27,7 @@ class CreatePostsTable extends Migration
             $table->foreign('forum_id')->references('forum_id')->on('forums')->onDelete('restrict');
 
             $table->timestamps();
-            // $table->softDeletes();
+            $table->softDeletes();
         });
     }
 

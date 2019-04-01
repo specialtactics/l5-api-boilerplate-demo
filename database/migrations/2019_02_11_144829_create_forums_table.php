@@ -19,11 +19,12 @@ class CreateForumsTable extends Migration
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
             $table->uuid('forum_id');
             $table->string('name');
+            $table->string('description')->nullable();
 
             $table->primary('forum_id');
 
             $table->timestamps();
-            // $table->softDeletes();
+            $table->softDeletes();
         });
     }
 

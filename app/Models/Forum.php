@@ -24,7 +24,7 @@ class Forum extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['name', 'description'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
@@ -38,7 +38,10 @@ class Forum extends BaseModel
      */
     public function getValidationRules()
     {
-        return [];
+        return [
+            'name' => 'required|string|unique:forums',
+            'description' => 'string',
+        ];
     }
 
 }
