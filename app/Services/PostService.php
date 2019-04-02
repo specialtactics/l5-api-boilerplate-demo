@@ -22,7 +22,7 @@ class PostService
     }
 
     /**
-     * Creates a new post
+     * Creates a new post, and returns it
      *
      * @param Topic $topic
      * @param array $data
