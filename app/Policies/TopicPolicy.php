@@ -15,7 +15,7 @@ class TopicPolicy extends BasePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -62,7 +62,7 @@ class TopicPolicy extends BasePolicy
      * @return mixed
      */
     public function own(User $user, Topic $topic) {
-        //
+        return true;
     }
 
     /**

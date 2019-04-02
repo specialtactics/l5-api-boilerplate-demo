@@ -62,7 +62,7 @@ class ForumPolicy extends BasePolicy
      * @return mixed
      */
     public function own(User $user, Forum $forum) {
-        //
+        return true;
     }
 
     /**

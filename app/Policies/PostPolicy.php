@@ -15,7 +15,7 @@ class PostPolicy extends BasePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
