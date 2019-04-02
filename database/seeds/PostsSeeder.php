@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Forum;
+use App\Models\Topic;
 use App\Models\Post;
 
 class PostsSeeder extends BaseSeeder
@@ -11,12 +12,12 @@ class PostsSeeder extends BaseSeeder
      * @return mixed
      */
     public function runFake() {
-        $forums = Forum::all();
+        $topics = Topic::all();
 
-        foreach ($forums as $forum) {
+        foreach ($topics as $topic) {
             for ($i = 0; $i < 10; ++$i) {
                 Post::create([
-                    'forum_id' => $forum->getKey(),
+                    'topic_id' => $topic->getKey(),
                     'topic' => implode(' ', $this->faker->words(3)),
                     'content' => $this->faker->paragraph(3),
                 ]);

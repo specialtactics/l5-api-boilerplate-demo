@@ -14,7 +14,7 @@ class Forum extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $localWith = ['topics'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -44,4 +44,8 @@ class Forum extends BaseModel
         ];
     }
 
+    public function topics()
+    {
+        return $this->hasMany(Topic::class, 'forum_id', 'forum_id');
+    }
 }

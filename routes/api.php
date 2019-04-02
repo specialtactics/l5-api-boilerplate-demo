@@ -96,6 +96,33 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
             $api->post('/', 'App\Http\Controllers\ForumController@post');
             $api->patch('/{uuid}', 'App\Http\Controllers\ForumController@patch');
             $api->delete('/{uuid}', 'App\Http\Controllers\ForumController@delete');
+
+            /*
+             * Topics
+             */
+            $api->group(['prefix' => '/{forumUuid}/topics'], function ($api) {
+                $api->get('/', 'App\Http\Controllers\TopicController@getAll');
+                $api->get('/{uuid}', 'App\Http\Controllers\TopicController@get');
+                $api->post('/', 'App\Http\Controllers\TopicController@post');
+                $api->patch('/{uuid}', 'App\Http\Controllers\TopicController@patch');
+                $api->delete('/{uuid}', 'App\Http\Controllers\TopicController@delete');
+            });
+        });
+
+        /*
+         * Topics
+         */
+        $api->group(['prefix' => 'topics'], function ($api) {
+            /*
+             * Posts
+             */
+            $api->group(['prefix' => '/{topicUuid}/posts'], function ($api) {
+                $api->get('/', 'App\Http\Controllers\PostController@getAll');
+                $api->get('/{uuid}', 'App\Http\Controllers\PostController@get');
+                $api->post('/', 'App\Http\Controllers\PostController@post');
+                $api->patch('/{uuid}', 'App\Http\Controllers\PostController@patch');
+                $api->delete('/{uuid}', 'App\Http\Controllers\PostController@delete');
+            });
         });
     });
 });

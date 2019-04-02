@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateTopicsTable extends Migration
 {
 
-    const TABLE_NAME = 'posts';
+    const TABLE_NAME = 'topics';
 
     /**
      * Run the migrations.
@@ -17,15 +17,15 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('post_id');
-
             $table->uuid('topic_id');
+            $table->uuid('forum_id');
             $table->uuid('author_id');
 
-            $table->text('content');
+            $table->string('title');
 
-            $table->primary('post_id');
-            $table->foreign('topic_id')->references('topic_id')->on('topics')->onDelete('cascade');
+            $table->primary('topic_id');
+
+            $table->foreign('forum_id')->references('forum_id')->on('forums')->onDelete('cascade');
             $table->foreign('author_id')->references('user_id')->on('users')->onDelete('restrict');
 
             $table->timestamps();
