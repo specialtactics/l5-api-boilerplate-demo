@@ -9,6 +9,11 @@ class RoleTableSeeder extends BaseSeeder
             'name' => 'admin',
             'description' => 'Administrator Users',
         ]);
+
+        Role::firstOrCreate([
+            'name' => 'regular',
+            'description' => 'Regular Users',
+        ]);
     }
 
     public function runFake() {

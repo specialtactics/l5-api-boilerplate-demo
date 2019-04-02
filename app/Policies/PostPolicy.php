@@ -62,7 +62,7 @@ class PostPolicy extends BasePolicy
      * @return mixed
      */
     public function own(User $user, Post $post) {
-        //
+        return $post->author_id == $user->user_id;
     }
 
     /**
