@@ -21,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         //Forum::class => ForumPolicy::class,
         //Topic::class => TopicPolicy::class,
-        Post::class => PostPolicy::class,
+        // Post::class => PostPolicy::class,
     ];
 
     /**
