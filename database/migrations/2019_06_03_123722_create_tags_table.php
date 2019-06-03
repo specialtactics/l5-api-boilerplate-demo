@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForumsTable extends Migration
+class CreateTagsTable extends Migration
 {
 
-    const TABLE_NAME = 'forums';
+    const TABLE_NAME = 'tags';
 
     /**
      * Run the migrations.
@@ -17,14 +17,10 @@ class CreateForumsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('forum_id');
-            $table->uuid('parent_id')->nullable();
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('type')->default(\App\Models\Forum::TYPE_FORUM);
+            $table->uuid('tag_id');
+            $table->string('label');
 
-            $table->primary('forum_id');
-            $table->foreign('parent_id')->references('forum_id')->on(static::TABLE_NAME)->onDelete('restrict');
+            $table->primary('tag_id');
 
             $table->timestamps();
             $table->softDeletes();

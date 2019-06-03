@@ -4,23 +4,17 @@ namespace App\Models;
 
 use App\Transformers\BaseTransformer;
 
-class Forum extends BaseModel
+class Tag extends BaseModel
 {
-    /**
-     * Types of "forum" entity
-     */
-    const TYPE_FORUM = 'forum';
-    const TYPE_CATEGORY = 'category';
-
     /**
      * @var string UUID key
      */
-    public $primaryKey = 'forum_id';
+    public $primaryKey = 'tag_id';
 
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = ['topics'];
+    public static $localWith = [];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -30,7 +24,7 @@ class Forum extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = ['name', 'description'];
+    protected $fillable = [];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
@@ -44,14 +38,7 @@ class Forum extends BaseModel
      */
     public function getValidationRules()
     {
-        return [
-            'name' => 'required|string|unique:forums',
-            'description' => 'string',
-        ];
+        return [];
     }
 
-    public function topics()
-    {
-        return $this->hasMany(Topic::class, 'forum_id', 'forum_id');
-    }
 }
