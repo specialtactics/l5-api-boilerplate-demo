@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8880356df45eae1e97b200f640ac6f5",
+    "content-hash": "adef49f0f52203a8a4114c9f43f02c4a",
     "packages": [
         {
             "name": "atehnix/laravel-stubs",
@@ -2043,22 +2043,21 @@
         },
         {
             "name": "specialtactics/l5-api",
-            "version": "v1.x-dev",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/specialtactics/l5-api.git",
-                "reference": "34ec1b86c8c86dd2aa5420481ed619daa0732acd"
+                "reference": "d267729898c526259dce689bd648e19cc2465aa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/34ec1b86c8c86dd2aa5420481ed619daa0732acd",
-                "reference": "34ec1b86c8c86dd2aa5420481ed619daa0732acd",
+                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/d267729898c526259dce689bd648e19cc2465aa2",
+                "reference": "d267729898c526259dce689bd648e19cc2465aa2",
                 "shasum": ""
             },
             "require": {
                 "atehnix/laravel-stubs": "~6.0",
                 "dingo/api": "^2",
-                "illuminate/support": "^5.8",
                 "php": "^7.1.3",
                 "ramsey/uuid": "^3.0",
                 "tymon/jwt-auth": "^1.0",
@@ -2103,7 +2102,7 @@
                 "boilerplate",
                 "laravel"
             ],
-            "time": "2019-04-01T14:17:48+00:00"
+            "time": "2019-06-03T12:46:05+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
