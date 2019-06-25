@@ -5,6 +5,11 @@ use App\Models\User;
 
 class UserStorySeeder extends BaseSeeder
 {
+    /**
+     * Credentials
+     */
+    const ADMIN_CREDENTIALS = ['admin@admin.com', 'secret'];
+
     public function runFake() {
         // Grab all roles for reference
         $roles = Role::all();
