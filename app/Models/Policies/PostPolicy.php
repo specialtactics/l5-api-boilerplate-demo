@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
 use App\Models\User;
 use App\Models\Post;
 
 class PostPolicy extends BasePolicy
 {
+    public function viewAll(User $user)
+    {
+        return true;
+    }
+
     /**
      * Determine whether the user can create Post.
      *

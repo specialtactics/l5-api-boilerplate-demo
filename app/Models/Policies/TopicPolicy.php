@@ -1,68 +1,73 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
 use App\Models\User;
-use App\Models\Tag;
+use App\Models\Topic;
 
-class TagPolicy extends BasePolicy
+class TopicPolicy extends BasePolicy
 {
+    public function viewAll(User $user)
+    {
+        return true;
+    }
+
     /**
-     * Determine whether the user can create tag.
+     * Determine whether the user can create Topic.
      *
      * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
-     * Determine whether the user can view the tag.
+     * Determine whether the user can view the Topic.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Topic  $topic
      * @return mixed
      */
-    public function view(User $user, Tag $tag)
+    public function view(User $user, Topic $topic)
     {
-        return $this->own($user, $tag);
+        return $this->own($user, $topic);
     }
 
     /**
-     * Determine whether the user can update the tag.
+     * Determine whether the user can update the Topic.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Topic  $topic
      * @return mixed
      */
-    public function update(User $user, Tag $tag)
+    public function update(User $user, Topic $topic)
     {
-        return $this->own($user, $tag);
+        return $this->own($user, $topic);
     }
 
     /**
-     * Determine whether the user can delete the tag.
+     * Determine whether the user can delete the Topic.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Topic  $topic
      * @return mixed
      */
-    public function delete(User $user, Tag $tag)
+    public function delete(User $user, Topic $topic)
     {
-        return $this->own($user, $tag);
+        return $this->own($user, $topic);
     }
 
     /**
-     * Determine whether the user owns the tag.
+     * Determine whether the user owns the Topic.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Topic  $topic
      * @return mixed
      */
-    public function own(User $user, Tag $tag) {
-        //
+    public function own(User $user, Topic $topic) {
+        return true;
     }
 
     /**

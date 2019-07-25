@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
 use App\Models\User;
 use App\Models\Forum;
 
 class ForumPolicy extends BasePolicy
 {
+    public function viewAll(User $user)
+    {
+        return true;
+    }
+
     /**
      * Determine whether the user can create Forum.
      *
@@ -15,7 +20,7 @@ class ForumPolicy extends BasePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**

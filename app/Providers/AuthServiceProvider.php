@@ -18,11 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [
-        //Forum::class => ForumPolicy::class,
-        //Topic::class => TopicPolicy::class,
-        Post::class => PostPolicy::class,
-    ];
+    protected $policies = [];
 
     /**
      * Register any authentication / authorization services.
