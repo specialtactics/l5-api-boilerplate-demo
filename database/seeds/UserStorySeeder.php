@@ -23,6 +23,13 @@ class UserStorySeeder extends BaseSeeder
             'primary_role' => $roles->where('name', 'regular')->first()->role_id,
         ]);
 
+        // Create regular user
+        factory(App\Models\User::class)->create([
+            'name'         => 'Jane',
+            'email'        => 'jane@bob.com',
+            'primary_role' => $roles->where('name', 'regular')->first()->role_id,
+        ]);
+
         // Get some random roles to assign to users
         $fakeRolesToAssignCount = 3;
         $fakeRolesToAssign = RoleTableSeeder::getRandomRoles($fakeRolesToAssignCount);
