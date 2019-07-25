@@ -3,7 +3,6 @@
     "description": "An API boilerplate for Laravel 5",
     "keywords": ["laravel", "boilerplate", "api", "api boilerplate", "laravel api"],
     "license": "MIT",
-    "type": "project",
     "authors": [
         {
             "name": "Max Snow",
@@ -15,7 +14,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "specialtactics/l5-api": "^0",
+        "specialtactics/l5-api": "~1",
         "predis/predis": "~1"
     },
     "require-dev": {
