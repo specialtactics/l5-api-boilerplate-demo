@@ -6,6 +6,7 @@ FROM php:${PHP_VERSION}-fpm
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     libz-dev \
+    libzip-dev \
     libpq-dev \
     libssl-dev \
     libmcrypt-dev \
@@ -26,6 +27,14 @@ RUN docker-php-ext-install opcache
 RUN docker-php-ext-install zip
 RUN docker-php-ext-configure intl && docker-php-ext-install intl
 RUN docker-php-ext-install bcmath
+
+# Install required PECL extensions
+RUN pecl install \
+    redis
+
+# Enable above
+RUN docker-php-ext-enable \
+    redis
 
 ###########################################################################
 # xDebug:

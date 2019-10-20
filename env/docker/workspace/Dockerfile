@@ -7,6 +7,7 @@ RUN echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 # Install packages for required extensions
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
+    libzip-dev \
     libz-dev \
     libpq-dev \
     libssl-dev \
@@ -38,6 +39,14 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-configure intl && docker-php-ext-install intl
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install soap
+
+# Install required PECL extensions
+RUN pecl install \
+    redis
+
+# Enable above
+RUN docker-php-ext-enable \
+    redis
 
 ###########################################################################
 # Laradock non-root user:
