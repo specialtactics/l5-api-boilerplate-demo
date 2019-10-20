@@ -124,5 +124,16 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
                 $api->delete('/{uuid}', 'App\Http\Controllers\PostController@delete');
             });
         });
+
+        /*
+         * PaginatedResources
+         */
+        $api->group(['prefix' => 'paginated-resources'], function ($api) {
+            $api->get('/', 'App\Http\Controllers\PaginatedResourceController@getAll');
+            $api->get('/{uuid}', 'App\Http\Controllers\PaginatedResourceController@get');
+            $api->post('/', 'App\Http\Controllers\PaginatedResourceController@post');
+            $api->patch('/{uuid}', 'App\Http\Controllers\PaginatedResourceController@patch');
+            $api->delete('/{uuid}', 'App\Http\Controllers\PaginatedResourceController@delete');
+        });
     });
 });

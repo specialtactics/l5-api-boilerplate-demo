@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ForumsSeeder::class);
         $this->call(TopicsSeeder::class);
         $this->call(PostsSeeder::class);
+        $this->call(PaginatedResourcesSeeder::class);
     }
 }
