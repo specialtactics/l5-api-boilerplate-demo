@@ -7,11 +7,6 @@ use App\Models\Post;
 
 class PostPolicy extends BasePolicy
 {
-    public function viewAll(User $user)
-    {
-        return true;
-    }
-
     /**
      * Determine whether the user can create Post.
      *
@@ -33,6 +28,17 @@ class PostPolicy extends BasePolicy
     public function view(User $user, Post $post)
     {
         return $this->own($user, $post);
+    }
+
+    /**
+     * Determine whether the user can view the collection of Post.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function viewAll(User $user)
+    {
+        return true;
     }
 
     /**

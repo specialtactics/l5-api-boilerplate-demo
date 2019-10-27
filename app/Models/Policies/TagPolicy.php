@@ -7,11 +7,6 @@ use App\Models\Tag;
 
 class TagPolicy extends BasePolicy
 {
-    public function viewAll(User $user)
-    {
-        return true;
-    }
-
     /**
      * Determine whether the user can create tag.
      *
@@ -33,6 +28,17 @@ class TagPolicy extends BasePolicy
     public function view(User $user, Tag $tag)
     {
         return $this->own($user, $tag);
+    }
+
+    /**
+     * Determine whether the user can view the collection of tag.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function viewAll(User $user)
+    {
+        return true;
     }
 
     /**

@@ -14,7 +14,7 @@ class Post extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = ['topic', 'author'];
+    public static $itemWith = ['topic', 'author'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default

@@ -14,7 +14,7 @@ class Tag extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $itemWith = [];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default

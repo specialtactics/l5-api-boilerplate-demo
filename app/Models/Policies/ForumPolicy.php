@@ -7,11 +7,6 @@ use App\Models\Forum;
 
 class ForumPolicy extends BasePolicy
 {
-    public function viewAll(User $user)
-    {
-        return true;
-    }
-
     /**
      * Determine whether the user can create Forum.
      *
@@ -33,6 +28,17 @@ class ForumPolicy extends BasePolicy
     public function view(User $user, Forum $forum)
     {
         return $this->own($user, $forum);
+    }
+
+    /**
+     * Determine whether the user can view the collection of Forum.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function viewAll(User $user)
+    {
+        return true;
     }
 
     /**

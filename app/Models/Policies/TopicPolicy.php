@@ -7,11 +7,6 @@ use App\Models\Topic;
 
 class TopicPolicy extends BasePolicy
 {
-    public function viewAll(User $user)
-    {
-        return true;
-    }
-
     /**
      * Determine whether the user can create Topic.
      *
@@ -33,6 +28,17 @@ class TopicPolicy extends BasePolicy
     public function view(User $user, Topic $topic)
     {
         return $this->own($user, $topic);
+    }
+
+    /**
+     * Determine whether the user can view the collection of Topic.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function viewAll(User $user)
+    {
+        return true;
     }
 
     /**

@@ -29,7 +29,7 @@ class User extends BaseModel implements
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = ['primaryRole', 'roles'];
+    public static $itemWith = ['primaryRole', 'roles'];
 
     /**
      * The attributes that are mass assignable.
