@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "baddd5711f3a8b0d4dd218b53c75f3cd",
@@ -2006,22 +2006,22 @@
         },
         {
             "name": "specialtactics/l5-api",
-            "version": "v1.1.0-rc.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/specialtactics/l5-api.git",
-                "reference": "236646f1589ff7c0eefeda93d8977fbf5abc197d"
+                "reference": "aa3d120b96e3914e8037cba7223ed0d444e9f8a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/236646f1589ff7c0eefeda93d8977fbf5abc197d",
-                "reference": "236646f1589ff7c0eefeda93d8977fbf5abc197d",
+                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/aa3d120b96e3914e8037cba7223ed0d444e9f8a0",
+                "reference": "aa3d120b96e3914e8037cba7223ed0d444e9f8a0",
                 "shasum": ""
             },
             "require": {
                 "atehnix/laravel-stubs": "~6.0",
                 "dingo/api": "^2.4",
-                "illuminate/support": "^6",
+                "illuminate/support": "^6 || ^5.8",
                 "php": "^7.2",
                 "ramsey/uuid": "^3.0",
                 "tymon/jwt-auth": "^1.0",
@@ -2034,7 +2034,7 @@
                 "fzaninotto/faker": "^1.4",
                 "mockery/mockery": "^1.0",
                 "nunomaduro/collision": "^2.0",
-                "orchestra/testbench": "^4",
+                "orchestra/testbench": "^4 || ^3",
                 "phpunit/phpunit": "^7.5 || ^8.3"
             },
             "type": "library",
@@ -2069,7 +2069,7 @@
                 "boilerplate",
                 "laravel"
             ],
-            "time": "2019-09-27T04:01:56+00:00"
+            "time": "2019-10-21T11:20:23+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
