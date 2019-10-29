@@ -30,7 +30,7 @@ class Announcement extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'forum_id'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
@@ -44,7 +44,16 @@ class Announcement extends BaseModel
      */
     public function getValidationRules()
     {
-        return [];
+        return [
+            'forum_id' => 'nullable|exists:forums,forum_id'
+        ];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function forum()
+    {
+        return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
+    }
 }

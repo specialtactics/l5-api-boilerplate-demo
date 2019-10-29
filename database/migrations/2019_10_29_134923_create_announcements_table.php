@@ -20,8 +20,10 @@ class CreateAnnouncementsTable extends Migration
             $table->uuid('announcement_id');
             $table->string('title');
             $table->text('content');
+            $table->uuid('forum_id')->nullable();
 
             $table->primary('announcement_id');
+            $table->foreign('forum_id')->references('forum_id')->on('forums');
 
             $table->timestamps();
             // $table->softDeletes();
