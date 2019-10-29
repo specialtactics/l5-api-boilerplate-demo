@@ -2006,16 +2006,16 @@
         },
         {
             "name": "specialtactics/l5-api",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/specialtactics/l5-api.git",
-                "reference": "aa3d120b96e3914e8037cba7223ed0d444e9f8a0"
+                "reference": "40ecb0479bd52dae7a97906c8c11db482edd795b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/aa3d120b96e3914e8037cba7223ed0d444e9f8a0",
-                "reference": "aa3d120b96e3914e8037cba7223ed0d444e9f8a0",
+                "url": "https://api.github.com/repos/specialtactics/l5-api/zipball/40ecb0479bd52dae7a97906c8c11db482edd795b",
+                "reference": "40ecb0479bd52dae7a97906c8c11db482edd795b",
                 "shasum": ""
             },
             "require": {
@@ -2069,7 +2069,7 @@
                 "boilerplate",
                 "laravel"
             ],
-            "time": "2019-10-21T11:20:23+00:00"
+            "time": "2019-10-29T13:28:59+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
