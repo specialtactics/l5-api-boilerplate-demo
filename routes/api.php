@@ -131,5 +131,17 @@ $api->version('v1', ['middleware' => ['api']], function (Router $api) {
             $api->patch('/{uuid}', 'App\Http\Controllers\PaginatedResourceController@patch');
             $api->delete('/{uuid}', 'App\Http\Controllers\PaginatedResourceController@delete');
         });
+
+        /*
+         * Announcements
+         */
+        $api->group(['prefix' => 'announcements'], function (Router $api) {
+            $api->get('/', 'App\Http\Controllers\AnnouncementController@getAll');
+            $api->get('/{uuid}', 'App\Http\Controllers\AnnouncementController@get');
+            $api->post('/', 'App\Http\Controllers\AnnouncementController@post');
+            $api->patch('/{uuid}', 'App\Http\Controllers\AnnouncementController@patch');
+            $api->delete('/{uuid}', 'App\Http\Controllers\AnnouncementController@delete');
+        });
+
     });
 });
