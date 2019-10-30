@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Transformers\AnnouncementTransformer;
 use App\Transformers\BaseTransformer;
 
 class Announcement extends BaseModel
