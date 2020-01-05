@@ -38,6 +38,9 @@ $api->version('v1', ['middleware' => ['api']], function (Router $api) {
     /**
      * Test
      */
+    $api->get('/test', '\App\Http\Controllers\TestController@test');
+
+
     $api->group(['prefix' => 'posts'], function (Router $api) {
         $api->get('/', 'App\Http\Controllers\PostController@getAll');
         $api->post('/', 'App\Http\Controllers\PostController@post');
