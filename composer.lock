@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "baddd5711f3a8b0d4dd218b53c75f3cd",
@@ -58,16 +58,16 @@
         },
         {
             "name": "dingo/api",
-            "version": "v2.4.0-rc2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dingo/api.git",
-                "reference": "512eb1a0cd55a6f9f997d60183bf8bfb2a0f3187"
+                "reference": "f0a32f17ff8e6d1ca1dc74233e93220db83191e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dingo/api/zipball/512eb1a0cd55a6f9f997d60183bf8bfb2a0f3187",
-                "reference": "512eb1a0cd55a6f9f997d60183bf8bfb2a0f3187",
+                "url": "https://api.github.com/repos/dingo/api/zipball/f0a32f17ff8e6d1ca1dc74233e93220db83191e7",
+                "reference": "f0a32f17ff8e6d1ca1dc74233e93220db83191e7",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "laravel",
                 "restful"
             ],
-            "time": "2019-09-27T04:15:05+00:00"
+            "time": "2020-01-05T04:20:48+00:00"
         },
         {
             "name": "dingo/blueprint",
